@@ -1,24 +1,26 @@
 // Code your solution in this file!
-const returnFirstTwoDrivers = function(drivers) {
-    return drivers.slice(0, 2);
-  };
+function distanceFromHqInBlocks(block) {
+    return Math.abs(block - 42);
+  }
   
-  const returnLastTwoDrivers = function(drivers) {
-    return drivers.slice(-2);
-  };
+  function distanceFromHqInFeet(block) {
+    return distanceFromHqInBlocks(block) * 264;
+  }
   
-  const selectingDrivers = [returnFirstTwoDrivers, returnLastTwoDrivers];
+  function distanceTravelledInFeet(startBlock, endBlock) {
+    return Math.abs(startBlock - endBlock) * 264;
+  }
   
-  const createFareMultiplier = function(integer) {
-    return function(fare) {
-      return fare * integer;
-    };
-  };
-  
-  const fareDoubler = createFareMultiplier(2);
-  
-  const fareTripler = createFareMultiplier(3);
-  
-  const selectDifferentDrivers = function(drivers, returnDriversFunction) {
-    return returnDriversFunction(drivers);
-  };
+  function calculatesFarePrice(startBlock, endBlock) {
+    const distance = distanceTravelledInFeet(startBlock, endBlock);
+    
+    if (distance <= 400) {
+      return 0;
+    } else if (distance > 400 && distance <= 2000) {
+      return (distance - 400) * 0.02;
+    } else if (distance > 2000 && distance <= 2500) {
+      return 25;
+    } else if (distance > 2500) {
+      return 'cannot travel that far';
+    }
+  }
